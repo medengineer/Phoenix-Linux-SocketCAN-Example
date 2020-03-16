@@ -2,6 +2,7 @@
 #include "ctre/Phoenix.h"
 #include "ctre/phoenix/platform/Platform.h"
 #include "ctre/phoenix/unmanaged/Unmanaged.h"
+#include "rev/CANSparkMax.h"
 #include <string>
 #include <iostream>
 #include <chrono>

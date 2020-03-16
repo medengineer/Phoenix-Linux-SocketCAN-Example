@@ -18,6 +18,7 @@ find_package(SDL2 REQUIRED)
 
 # The following folder will be included
 include_directories("${PROJECT_SOURCE_DIR}/include")
+include_directories()
 
 add_executable(example ${PROJECT_SOURCE_DIR}/example.cpp)
 if (${CMAKE_LIBRARY_ARCHITECTURE} STREQUAL "arm-linux-gnueabihf") # Jetson TK1 / Pi
@@ -25,6 +26,7 @@ if (${CMAKE_LIBRARY_ARCHITECTURE} STREQUAL "arm-linux-gnueabihf") # Jetson TK1 /
     target_link_libraries(example ${CMAKE_SOURCE_DIR}/lib/raspberry/libCTRE_PhoenixCCI.a)
     target_link_libraries(example ${CMAKE_SOURCE_DIR}/lib/raspberry/libCTRE_PhoenixPlatformLinuxSocketCan.a)
     target_link_libraries(example ${CMAKE_SOURCE_DIR}/lib/raspberry/libCTRE_PhoenixCanutils.a)
+    target_link_libraries(example ${CMAKE_SOURCE_DIR}/lib/raspberry/libSparkMax.so)
 elseif (${CMAKE_LIBRARY_ARCHITECTURE} STREQUAL "aarch64-linux-gnu") # Jetson TX2
     target_link_libraries(example ${CMAKE_SOURCE_DIR}/lib/jetsontx/libCTRE_Phoenix.a)
     target_link_libraries(example ${CMAKE_SOURCE_DIR}/lib/jetsontx/libCTRE_PhoenixCCI.a)
@@ -39,4 +41,6 @@ endif()
 
 target_link_libraries(example Threads::Threads)
 target_link_libraries(example ${SDL2_LIBRARIES})
+     
+TARGET_LINK_LIBRARIES(example "-L/path/to/shared/library" SHARED_LIB_name)
 
